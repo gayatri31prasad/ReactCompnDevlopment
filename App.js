@@ -11,7 +11,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      {false ? <Devlopment /> : <MapNavigation />}
+      {true ? <Devlopment /> : <MapNavigation />}
     </NavigationContainer>
   );
 };
