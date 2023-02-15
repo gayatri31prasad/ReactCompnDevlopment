@@ -1,6 +1,7 @@
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import SelectDropdown from './SelectDropdown'
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const SelectPicker = (props) => {
     const monthStr = [
@@ -55,6 +56,7 @@ const SelectPicker = (props) => {
                     }}
                     rowTextStyle={{ fontSize: 14, textAlign: 'left', paddingLeft: 5 }}
                 />
+                {/* <Icon name="rocket" size={30} color="#900" /> */}
             </View>
         </SafeAreaView>)
 }
