@@ -7,7 +7,8 @@ import {
     Platform,
     PermissionsAndroid,
     ActivityIndicator,
-    TouchableOpacity
+    TouchableOpacity,
+    Text
 } from "react-native";
 // import LocationView from "react-native-location-view";
 import Geolocation from 'react-native-geolocation-service';
@@ -30,13 +31,13 @@ const MapViewToGetLocation = ({
     onLocationChange,
     onClose
 }) => {
-    const [latitude, setLatitude] = useState({ latCoordinates: defaultLatLong.latitude });
-    const [longitude, setLongitude] = useState({ longCoordinates: defaultLatLong.longitude });
+    const [latitude, setLatitude] = useState({ latCoordinates: defaultLatLong?.latitude });
+    const [longitude, setLongitude] = useState({ longCoordinates: defaultLatLong?.longitude });
     const [isLoading, setIsLoading] = useState();
     const [cancelVisibility, setCancelVisibility] = useState(true)
     const [currentlocationobject, setcurrentlocationobject] = useState({});
 
-    console.log("lllllllllllllllllllllllllll", location);
+    // console.log("lllllllllllllllllllllllllll", location);
     useEffect(() => {
         if (location) {
             let newLat = latitude
@@ -91,11 +92,11 @@ const MapViewToGetLocation = ({
                             position?.coords?.longitude
                         ) {
                             let newLat = latitude
-                            newLat.latCoordinates = position.coords.latitude
+                            newLat.latCoordinates = position?.coords?.latitude
                             setLatitude({ ...newLat });
 
                             let newLong = longitude
-                            newLong.longCoordinates = position.coords.longitude
+                            newLong.longCoordinates = position?.coords?.longitude
                             setLongitude({ ...newLong });
 
 
@@ -105,7 +106,7 @@ const MapViewToGetLocation = ({
                             setLatitude({ ...newLat });
 
                             let newLong = longitude
-                            newLong.longCoordinates = defaultLatLong.longitude
+                            newLong.longCoordinates = defaultLatLong?.longitude
                             setLongitude({ ...newLong });
                         }
                         setIsLoading(false);
@@ -113,9 +114,9 @@ const MapViewToGetLocation = ({
 
                     },
                     error => {
-                        setLatitude(defaultLatLong.latitude);
-                        setLongitude(defaultLatLong.longitude);
-                        console.log(error);
+                        setLatitude(defaultLatLong?.latitude);
+                        setLongitude(defaultLatLong?.longitude);
+                        console.log('', error);
                         setIsLoading(false);
                         setcurrentlocationobject({ ...defaultLatLong })
 
@@ -127,18 +128,18 @@ const MapViewToGetLocation = ({
                     },
                 );
             } else {
-                setLatitude(defaultLatLong.latitude);
-                setLongitude(defaultLatLong.longitude);
+                setLatitude(defaultLatLong?.latitude);
+                setLongitude(defaultLatLong?.longitude);
                 setcurrentlocationobject({ ...defaultLatLong })
                 setIsLoading(false);
             }
 
         }
         catch (error) {
-            setLatitude(defaultLatLong.latitude);
-            setLongitude(defaultLatLong.longitude);
+            setLatitude(defaultLatLong?.latitude);
+            setLongitude(defaultLatLong?.longitude);
             setcurrentlocationobject({ ...defaultLatLong })
-            console.log(error);
+            console.log('', error);
             setIsLoading(false);
         }
     }
@@ -168,8 +169,8 @@ const MapViewToGetLocation = ({
 
                     },
                     error => {
-                        setLatitude(defaultLatLong.latitude);
-                        setLongitude(defaultLatLong.longitude);
+                        setLatitude(defaultLatLong?.latitude);
+                        setLongitude(defaultLatLong?.longitude);
                         console.log(error);
                         setIsLoading(false);
                     },
@@ -182,8 +183,8 @@ const MapViewToGetLocation = ({
             }
         }
         catch (error) {
-            setLatitude(defaultLatLong.latitude);
-            setLongitude(defaultLatLong.longitude);
+            setLatitude(defaultLatLong?.latitude);
+            setLongitude(defaultLatLong?.longitude);
             console.log(error);
             setIsLoading(false);
         }

@@ -4,11 +4,12 @@ import React from 'react'
 import Calender from '../Screens/Calender';
 import Login from '../Screens/Login';
 import SelectPicker from '../Screens/SelectPicker';
+import SelectLocation from '../Screens/SelectLocation';
 
 const Devlopment = () => {
     const Dev = createStackNavigator();
     return (
-        <Dev.Navigator initialRouteName="SelectPicker">
+        <Dev.Navigator initialRouteName="Login">
             <Dev.Screen
                 options={{ headerShown: false }}
                 name="Login"
@@ -47,6 +48,23 @@ const Devlopment = () => {
                 }}
                 name="SelectPicker"
                 component={SelectPicker}
+            />
+            <Dev.Screen
+                options={{
+                    headerTintColor: '#fff',
+                    headerStyle: {
+                        backgroundColor: '#74AEC2',
+                    },
+                    headerTitleStyle: {
+                        color: '#fff',
+                        fontSize: 18,
+                        width: '100%',
+                    },
+                    headerTitle: 'Select Location',
+                    headerTitleAlign: 'center',
+                }}
+                name="SelectLocation"
+                component={SelectLocation}
             />
         </Dev.Navigator>
     )

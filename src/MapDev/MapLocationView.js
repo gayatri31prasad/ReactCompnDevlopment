@@ -45,25 +45,26 @@ const MapLocationView = ({
 }) => {
 
     let _input = useRef()
+    let _map = useRef()
 
     useEffect(() => {
-        // if (Platform.OS === 'android') {
-        //     UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
-        // }
+        if (Platform.OS === 'android') {
+            UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
+        }
 
-        // Events.listen('InputBlur', constructor.displayName, _onTextBlur);
-        // Events.listen('InputFocus', constructor.displayName, _onTextFocus);
-        // Events.listen('PlaceSelected', constructor.displayName, _onPlaceSelected);
-        // Events.listen('IsLoading', constructor.displayName, _onLoading);
-        // // Events.listen('CurrentLocation', constructor.displayName, _onMapRegionChangeOnTarget(currentlocationobjectData));
+        Events.listen('InputBlur', constructor.displayName, _onTextBlur);
+        Events.listen('InputFocus', constructor.displayName, _onTextFocus);
+        Events.listen('PlaceSelected', constructor.displayName, _onPlaceSelected);
+        Events.listen('IsLoading', constructor.displayName, _onLoading);
+        // Events.listen('CurrentLocation', constructor.displayName, _onMapRegionChangeOnTarget(currentlocationobjectData));
 
-        // return () => {
-        //     Events.rm('InputBlur', constructor.displayName);
-        //     Events.rm('InputFocus', constructor.displayName);
-        //     Events.rm('PlaceSelected', constructor.displayName);
-        //     Events.rm('IsLoading', constructor.displayName);
-        //     // Events.rm('CurrentLocation', constructor.displayName);
-        // }
+        return () => {
+            Events.rm('InputBlur', constructor.displayName);
+            Events.rm('InputFocus', constructor.displayName);
+            Events.rm('PlaceSelected', constructor.displayName);
+            Events.rm('IsLoading', constructor.displayName);
+            // Events.rm('CurrentLocation', constructor.displayName);
+        }
 
     }, [])
 
@@ -114,7 +115,7 @@ const MapLocationView = ({
         // setState({...state, isLoading: true});
         // handlesetCancelVisibility(true)
         timer = setTimeout(() => {
-            _input.fetchAddressForLocation(region)
+            // _input.fetchAddressForLocation(region)
         }, 1200);
 
     };
@@ -207,7 +208,9 @@ const MapLocationView = ({
                     <TouchableOpacity
                         style={[styles.actionButton, actionButtonStyle, { opacity: state.isLoading ? 0.7 : 1 }]}
                         disabled={state.isLoading}
-                        onPress={() => onLocationSelect({ ...state.region, address: _input.getAddress(), placeDetails: state.placeDetails })}>
+                        onPress={() => {
+                            onLocationSelect({ ...state.region, address: _input.getAddress(), placeDetails: state.placeDetails })
+                        }}>
                         <View>
                             <Text style={[styles.actionText, actionTextStyle]}>{actionText}</Text>
                         </View>

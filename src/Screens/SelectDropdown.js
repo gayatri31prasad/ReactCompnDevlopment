@@ -17,6 +17,7 @@ import {
     I18nManager,
 } from "react-native";
 import _ from "lodash";
+import { Platform } from "react-native";
 const { width, height } = Dimensions.get("window");
 
 const DROPDOWN_MAX_HEIGHT = height * 0.4;
@@ -271,14 +272,18 @@ const SelectDropdown = (
     const renderFlatlistItem = ({ item, index }) => {
         return (
             <TouchableOpacity
-                style={[styles.dropdownRow, rowStyle]}
+                style={[styles.dropdownRow, rowStyle, {
+                    backgroundColor: '#fff',
+                    height: 39,
+                    borderBottomWidth: 1,
+                    borderBottomColor: '#fff',
+                }]}
                 onPress={() => {
                     closeDropdown();
                     onSelect(item, index);
                     setSelectedItem(item);
                     setIndex(index);
-                }}
-            >
+                }}>
                 {renderCustomizedRowChild ? (
                     <View style={[styles.dropdownCustomizedRowParent]}>
                         {renderCustomizedRowChild(
@@ -290,8 +295,8 @@ const SelectDropdown = (
                     <Text
                         numberOfLines={1}
                         allowFontScaling={false}
-                        style={[styles.dropdownRowText, rowTextStyle]}
-                    >
+                        style={[styles.dropdownRowText, rowTextStyle, { fontSize: 14, textAlign: 'left', paddingLeft: 5 }]}>
+
                         {rowTextForSelection ? rowTextForSelection(item, index) : item}
                     </Text>
                 )}
@@ -328,6 +333,18 @@ const SelectDropdown = (
                             dropdownStyle,
                             styles.dropdownOverlayViewForce,
                             styles.dropdownOverlayViewForceRTL,
+                            {
+                                borderWidth: 0,
+                                elevation: 3,
+                                margin: 0,
+                                padding: 2,
+                                shadowOffset: {
+                                    width: 2,
+                                    height: 2,
+                                },
+                                shadowOpacity: Platform.OS === 'ios' ? 0.2 : 0.1,
+                                shadowRadius: 3,
+                            },
                         ]}
                     >
                         {!data || data.length == 0 ? (
@@ -372,7 +389,7 @@ const SelectDropdown = (
             disabled={disabled}
             ref={DropdownButton}
             activeOpacity={0.5}
-            style={[styles.dropdownButton, buttonStyle]}
+            style={[styles.dropdownButton, buttonStyle, { backgroundColor: '#f0f0f0', width: '100%', borderRadius: 10 },]}
             onPress={() => openDropdown()}
         >
             {renderDropdown()}
@@ -385,8 +402,11 @@ const SelectDropdown = (
                 <Text
                     numberOfLines={1}
                     allowFontScaling={false}
-                    style={[styles.dropdownButtonText, buttonTextStyle]}
-                >
+                    style={[styles.dropdownButtonText, buttonTextStyle, {
+                        justifyContent: 'flex-start',
+                        fontSize: 14,
+                        textAlign: 'left',
+                    }]}>
                     {selectedItem
                         ? buttonTextAfterSelection
                             ? buttonTextAfterSelection(selectedItem, index)

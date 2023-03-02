@@ -24,7 +24,10 @@ const AutoCompleteInput = ({
 
     useEffect(() => {
         _request('')
-        fetchAddressForLocation()
+        fetchAddressForLocation({ // Default Pune location set
+            latitude: 18.5204,
+            longitude: 73.8567
+        })
 
         return () => {
             _abortRequest();

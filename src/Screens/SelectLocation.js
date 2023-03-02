@@ -46,7 +46,7 @@ const SelectLocation = () => {
             <Text>SelectLocation</Text>
             <MapViewToGetLocation
                 key={location?.latitude}
-                visible={mapVisible}
+                visible={true}
                 location={location}
                 onLocationChange={_location => onLocationChange(_location)}
                 onClose={() => setMapVisible(false)}
