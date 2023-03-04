@@ -13,6 +13,7 @@ const Calender = props => {
   const [month, setmonth] = useState(new Date().getMonth());
   const [monthDays, setmonthDays] = useState([]);
   const weeklist = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  NewDate = new Date()
   // [
   //   'Sunday',
   //   'Monday',
@@ -51,6 +52,7 @@ const Calender = props => {
         var newDate = new Date(year, month, i);
         data.push({
           date: newDate.getDate(),
+          all: newDate,
           weakDay: newDate.getDay(),
         });
       }
@@ -59,6 +61,7 @@ const Calender = props => {
       for (var i = 0; i < data[0].weakDay; i++) {
         space.push({
           date: '',
+          all: new Date('1000-01-01'),
           weakDay: i,
         });
       }
@@ -143,6 +146,7 @@ const Calender = props => {
                   style={{
                     height: 40,
                     width: 40,
+                    borderWidth: item?.all == NewDate ? 1 : 0,
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}>

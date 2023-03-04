@@ -19,7 +19,8 @@ const Login = props => {
     if (userName == '' || Password == '') {
       Alert.alert('Alert', 'UserName and Password is required')
     } else {
-      Alert.alert('Work on Progress ...........')
+      // Alert.alert('Work on Progress ...........')
+      props.navigation.navigate('Calender')
     }
   }
   return (
